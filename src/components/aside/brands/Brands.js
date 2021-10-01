@@ -24,6 +24,10 @@ const Brands = () => {
             <h3>Brands</h3>
             <input type="text" placeholder="Search Brand" onChange={(e) => setSearchBrands(e.target.value)} />
             <ul>
+                <li>
+                    <input type="checkbox" id="all-brand" name="brands" value="All" />
+                    <label htmlFor="all-brand">All</label>
+                </li>
                 { companiesResponse
                 .filter(company => company.name.includes(searchBrands))
                 .map(company => (

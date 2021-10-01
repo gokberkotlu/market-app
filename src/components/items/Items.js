@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { priceAscending, priceDescending, addedAscending, addedDescending } from "../../store/actions/SortingActions";
+import { addBrand, deleteBrand } from "../../store/actions/BrandsActions";
 
 const Items = () => {
 
@@ -7,6 +10,10 @@ const Items = () => {
     const [items, setItems] = useState([]);
     const [pageNumber, setPageNumber] = useState(null);
     const limit = 16;
+
+    const sorting = useSelector(state => state.sorting);
+    const brands = useSelector(state => state.brands);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         axios.get(url)
@@ -31,6 +38,7 @@ const Items = () => {
                 )) }
             </ul>
             {pageNumber && <p>Pages: {pageNumber}</p>}
+            <button onClick={() => dispatch(addBrand("deneme")) }>Brand Ekle</button>
         </>
     );
 }

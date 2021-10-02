@@ -12,17 +12,20 @@ const Items = () => {
 
     const sorting = useSelector(state => state.sorting);
     const brands = useSelector(state => state.brands);
+    const tags = useSelector(state => state.tags);
 
     useEffect(() => {
         let brandUrl = "";
+        let tagUrl = "";
         if(brands.length > 0)
             brandUrl = "manufacturer=" + brands.join("&manufacturer=");
-        axios.get(url + '&' + sorting + brandUrl)
+            tagUrl = "tags_like=" +  tags.join("&tags_like=");
+        axios.get(url + '&' + sorting + brandUrl + '&' + tagUrl)
         .then(res => {
             setItems(res.data);
             setPageNumber(Math.ceil(res.headers["x-total-count"] / limit));
         })
-    }, [sorting, brands]);
+    }, [sorting, brands, tags]);
 
 
     return (

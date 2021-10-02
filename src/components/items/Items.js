@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { base_url } from "../../utils/base_url";
 
 const Items = () => {
 
-    const [url, setUrl] = useState("http://localhost:8000/items?_page=1&_limit=16");
     const [items, setItems] = useState([]);
     const [pageNumber, setPageNumber] = useState(null);
+    const url = base_url + "?_page=1&_limit=16";
     const limit = 16;
 
     const sorting = useSelector(state => state.sorting);
@@ -25,7 +26,7 @@ const Items = () => {
 
 
     return (
-        <>
+        <div style={{ position: "absolute", top: 70, right: 300 }}>
             <ul>
                 { items.map(item => (
                     <li  key={item.added}>
@@ -38,7 +39,7 @@ const Items = () => {
                 )) }
             </ul>
             {pageNumber && <p>Pages: {pageNumber}</p>}
-        </>
+        </div>
     );
 }
  

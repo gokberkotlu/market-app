@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { priceAscending, priceDescending, addedAscending, addedDescending } from "../../store/actions/SortingActions";
-import { addBrand, deleteBrand } from "../../store/actions/BrandsActions";
+import { useSelector } from "react-redux";
 
 const Items = () => {
 
@@ -13,15 +11,17 @@ const Items = () => {
 
     const sorting = useSelector(state => state.sorting);
     const brands = useSelector(state => state.brands);
-    const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get(url)
+        let brandUrl = "";
+        if(brands.length > 0)
+            brandUrl = "manufacturer=" + brands.join("&manufacturer=");
+        axios.get(url + '&' + sorting + brandUrl)
         .then(res => {
             setItems(res.data);
             setPageNumber(Math.ceil(res.headers["x-total-count"] / limit));
         })
-    }, []);
+    }, [sorting, brands]);
 
 
     return (
@@ -38,7 +38,6 @@ const Items = () => {
                 )) }
             </ul>
             {pageNumber && <p>Pages: {pageNumber}</p>}
-            <button onClick={() => dispatch(addBrand("deneme")) }>Brand Ekle</button>
         </>
     );
 }

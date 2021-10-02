@@ -11,3 +11,9 @@ export const deleteBrand = (brand) => {
         payload: brand
     }
 }
+
+export const resetBrand = () => {
+    return {
+        type: 'RESET-BRAND'
+    }
+}

@@ -1,6 +1,8 @@
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./basket-app.css";
 import { deleteItemFromBasket, decreaseBasketItemNumber, increaseBasketItemNumber } from "../../store/actions/BasketActions";
+import { setTotalPrice } from "../../store/actions/TotalPriceActions";
 
 const BasketApp = () => {
 
@@ -17,7 +19,7 @@ const BasketApp = () => {
         return selectedItems;
     }
 
-    const calculatePrice = (items) => {
+    const calculatePrice = useCallback((items) => {
         let productPrice = 0;
         let availableItems = items["availableItems"];
         let productAdded = items["product-added"];
@@ -27,7 +29,24 @@ const BasketApp = () => {
             }
         }
         return productPrice.toFixed(2);
-    }
+    }, []);
+
+    useEffect(() => {
+        let basketKeys = Object.keys(basket);
+        let totalPrice = 0;
+        console.log(basketKeys.length);
+        for(let i = 0; i < basketKeys.length; i++) {
+            console.log(basket[basketKeys[i]]);
+            let availableItems = basket[basketKeys[i]]["availableItems"];
+            let productAdded = basket[basketKeys[i]]["product-added"];
+            for(let i = 0; i < availableItems.length; i++) {
+                if(productAdded.includes(availableItems[i].added)) {
+                    totalPrice += availableItems[i].price;
+                }
+            }
+            dispatch(setTotalPrice(totalPrice))
+        }
+    }, [basket]);
 
     return (
         <div>
@@ -53,4 +72,4 @@ const BasketApp = () => {
     );
 }
  
-export default BasketApp;
+export default React.memo(BasketApp);

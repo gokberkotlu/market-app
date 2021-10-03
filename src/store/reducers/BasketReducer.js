@@ -21,7 +21,19 @@ const BasketReducer = (state={}, action) => {
                     state[action.namePayload]["numberOfProduct"] += 1;
                     return { ...state };
                 } else {
-                    return state;
+                    let itemType = action.namePayload;
+                    let increaseItemGroup = state[itemType];
+                    let availableItemsAddedInfo = [];
+                    increaseItemGroup["availableItems"].forEach((availableItem) => {
+                        availableItemsAddedInfo.push(availableItem.added);
+                    });
+                    var difference = availableItemsAddedInfo.filter(x => increaseItemGroup["product-added"].indexOf(x) === -1);
+                    if(difference.length > 0) {
+                        increaseItemGroup["product-added"].push(difference[0]);
+                        increaseItemGroup["numberOfProduct"] += 1;
+                    }
+
+                    return {...state};
                 }
             }
 

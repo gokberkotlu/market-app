@@ -9,6 +9,8 @@ const PaginationReducer = (state=1, action) => {
             return state;
         case "SELECTED-PAGE":
             return action.paylaod;
+        case "RESET-PAGE":
+            return 1;
         default:
             return state;
     }

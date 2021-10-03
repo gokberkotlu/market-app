@@ -16,3 +16,9 @@ export const selectPage = (selected) => {
         payload: selected
     }
 }
+
+export const resetPage = () => {
+    return {
+        type: 'RESET-PAGE'
+    }
+}

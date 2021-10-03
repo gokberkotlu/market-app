@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Pagination from "../pagination/Pagination";
 import ProductType from "../product-type/ProductType";
 import NoResults from "../no-results/NoResults";
@@ -6,7 +6,8 @@ import BasketApp from "../basket-app/BasketApp";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPages } from "../../store/actions/TotalPagesAction";
-import { addItemToBasket, deleteItemFromBasket } from "../../store/actions/BasketActions";
+import { addItemToBasket } from "../../store/actions/BasketActions";
+import { resetPage } from "../../store/actions/PaginationActions";
 import { base_url } from "../../utils/base_url";
 
 const Items = () => {
@@ -25,6 +26,10 @@ const Items = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(resetPage());
+    }, [sorting, brands, tags, itemType])
+
+    useEffect(() => {
         let main_url = base_url + `?_page=${pagination}&_limit=16&`;
         let brandQuery = "";
         let tagQuery = "";
@@ -40,13 +45,12 @@ const Items = () => {
         })
     }, [sorting, brands, tags, pagination, itemType]);
 
-    useEffect(() => {
-        console.log(basket);
-    }, [basket]);
+    // useEffect(() => {
+    //     console.log(basket);
+    // }, [basket]);
 
-    const checkItemAdding = (item) => {
+    const checkItemAdding = useCallback((item) => {
         let itemQueryUrl = base_url + `?name=${item.name}`;
-
         if(!basket.hasOwnProperty(item.name)) {
             axios.get(itemQueryUrl)
             .then(res => {
@@ -55,7 +59,7 @@ const Items = () => {
         } else {
             dispatch(addItemToBasket(item.name, item.added));
         }
-    }
+    }, [])
 
 
     return (
@@ -80,4 +84,4 @@ const Items = () => {
     );
 }
  
-export default Items;
+export default React.memo(Items);

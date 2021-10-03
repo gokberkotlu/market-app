@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import Pagination from "../pagination/Pagination";
 import ProductType from "../product-type/ProductType";
 import NoResults from "../no-results/NoResults";
+import BasketApp from "../basket-app/BasketApp";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPages } from "../../store/actions/TotalPagesAction";
-import { addItemToBasket } from "../../store/actions/BasketActions";
+import { addItemToBasket, deleteItemFromBasket } from "../../store/actions/BasketActions";
 import { base_url } from "../../utils/base_url";
 
 const Items = () => {
@@ -43,9 +44,23 @@ const Items = () => {
         console.log(basket);
     }, [basket]);
 
+    const checkItemAdding = (item) => {
+        let itemQueryUrl = base_url + `?name=${item.name}`;
+
+        if(!basket.hasOwnProperty(item.name)) {
+            axios.get(itemQueryUrl)
+            .then(res => {
+                dispatch(addItemToBasket(item.name, item.added, res.data));
+            })
+        } else {
+            dispatch(addItemToBasket(item.name, item.added));
+        }
+    }
+
 
     return (
         <div style={{ position: "absolute", top: 70, right: 500 }}>
+            <BasketApp />
             <ProductType />
             {items.length > 0 ? <ul>
                 { items.map(item => (
@@ -53,7 +68,9 @@ const Items = () => {
                         <div>
                             <p>{item.name}</p>
                             <p>{item.price}</p>
-                            <button onClick={() => dispatch(addItemToBasket(item.name, item.added))}>Add</button>
+                            {/* <button onClick={() => dispatch(addItemToBasket(item.name, item.added))}>Add</button> */}
+                            <button onClick={() => checkItemAdding(item)}>Add</button>
+                            <button onClick={() => dispatch(deleteItemFromBasket(item.name, item.added))}>Delete</button>
                         </div>
                         <hr />
                     </li>

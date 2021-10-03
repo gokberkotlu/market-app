@@ -1,14 +1,16 @@
-export const addItemToBasket = (name, added) => {
+export const addItemToBasket = (name, added, res=null) => {
     return {
         type: 'ADD-ITEM',
         namePayload: name,
-        addedPayload: added
+        addedPayload: added,
+        response: res
     }
 }
 
-export const deleteItemFromBasket = (added) => {
+export const deleteItemFromBasket = (name, added) => {
     return {
         type: 'DELETE-ITEM',
+        namePayload: name,
         addedPayload: added
     }
 }

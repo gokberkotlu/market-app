@@ -1,9 +1,12 @@
-const BrandsReducer = (state=[], action) => {
+const PaginationReducer = (state=1, action) => {
     switch(action.type) {
         case "NEXT-PAGE":
             return state + 1;
         case "PREVIOUS-PAGE":
-            return state - 1;
+            if(state > 1) {
+                return state - 1;
+            }
+            return state;
         case "SELECTED-PAGE":
             return action.paylaod;
         default:
@@ -11,4 +14,4 @@ const BrandsReducer = (state=[], action) => {
     }
 }
 
-export default BrandsReducer;
+export default PaginationReducer;

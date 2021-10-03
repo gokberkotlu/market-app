@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
+import Pagination from "../pagination/Pagination";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalPages } from "../../store/actions/TotalPagesAction";
 import { base_url } from "../../utils/base_url";
 
 const Items = () => {
 
     const [items, setItems] = useState([]);
-    const [pageNumber, setPageNumber] = useState(null);
     const url = base_url + "?_page=1&_limit=16";
     const limit = 16;
 
     const sorting = useSelector(state => state.sorting);
     const brands = useSelector(state => state.brands);
     const tags = useSelector(state => state.tags);
+    const totalPages = useSelector(state => state.totalPages);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         let brandUrl = "";
@@ -23,7 +27,7 @@ const Items = () => {
         axios.get(url + '&' + sorting + brandUrl + '&' + tagUrl)
         .then(res => {
             setItems(res.data);
-            setPageNumber(Math.ceil(res.headers["x-total-count"] / limit));
+            dispatch(setTotalPages(Math.ceil(res.headers["x-total-count"] / limit)));
         })
     }, [sorting, brands, tags]);
 
@@ -41,7 +45,8 @@ const Items = () => {
                     </li>
                 )) }
             </ul>
-            {pageNumber && <p>Pages: {pageNumber}</p>}
+            {totalPages > 0 && <p>Pages: {totalPages}</p>}
+            <Pagination />
         </div>
     );
 }

@@ -1,0 +1,121 @@
+/* :root {
+    --box-width: 124px;
+    --box-height: 227px;
+    --box-gap: 24px;
+    --product-image-width: 124px;
+    --product-image-height: 124px;
+}
+
+.product-container {
+    width: calc(var(--box-width) * 4 + 3 * var(--box-gap));
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--box-gap);
+    border: 1px solid greenyellow;
+}
+
+.product {
+    box-sizing: border-box;
+    width: var(--box-width);
+    height: var(--box-height);
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.product-image {
+    width: var(--product-image-width);
+    height: var(--product-image-height);
+    background-color: red;
+    margin-bottom: 8px;
+}
+
+.product-detail {
+    width: 100%;
+    height: calc(var(--box-height) - var(--product-image-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+
+
+
+
+
+
+
+
+:root {
+    --box-width: 124px;
+    --box-height: 227px;
+    --box-gap: 24px;
+    --product-image-width: 124px;
+    --product-image-height: 124px;
+    --image-distance: 16px;
+}
+
+.product-container {
+    width: calc(var(--box-width) * 4 + 3 * var(--box-gap));
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--box-gap);
+    padding-top: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.product {
+    box-sizing: border-box;
+    width: var(--box-width);
+    height: var(--box-height);
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.product-image-container {
+    width: var(--product-image-width);
+    height: var(--product-image-height);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1.18px solid #F3F0FE;
+    border-radius: 12px;
+}
+
+.product-image {
+    background-color: #C4C4C4;
+    width: calc(100% - 2 * var(--image-distance));
+    height: calc(100% - 2 * var(--image-distance));
+}
+
+.product-detail {
+    width: 100%;
+    height: calc(var(--box-height) - var(--product-image-height));
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-weight: 600;
+}
+
+.add-button {
+    width: 100%;
+    height: 22px;
+    background-color: #1EA4CE;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    margin-top: auto
+}

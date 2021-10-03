@@ -12,22 +12,22 @@ const ProductType = () => {
     return (
         <div>
             <h2>PRODUCTS</h2>
-            <button
-            className={typeActive ? "type-active" : ""}
-            onClick={() => {
-                dispatch(selectMug());
-                setTypeActive(true);
-            }}>
-                mug
-            </button>
-            <button
-            className={!typeActive ? "type-active" : ""}
-            onClick={() => {
-                dispatch(selectShirt());
-                setTypeActive(false);
-            }}>
-                shirt
-            </button>
+            <div className="switch-filtercontainer">
+                <div className={typeActive ? "type-active mug-shirt" : "mug-shirt"}
+                onClick={() => {
+                    dispatch(selectMug());
+                    setTypeActive(true);
+                }}>
+                    mug
+                </div>
+                <div className={!typeActive ? "type-active mug-shirt" : "mug-shirt"}
+                onClick={() => {
+                    dispatch(selectShirt());
+                    setTypeActive(false);
+                }}>
+                    shirt
+                </div>
+            </div>
         </div>
     );
 }

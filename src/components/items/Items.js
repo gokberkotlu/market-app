@@ -9,6 +9,7 @@ import { setTotalPages } from "../../store/actions/TotalPagesAction";
 import { addItemToBasket } from "../../store/actions/BasketActions";
 import { resetPage } from "../../store/actions/PaginationActions";
 import { base_url } from "../../utils/base_url";
+import "./items.css";
 
 const Items = () => {
 
@@ -45,10 +46,6 @@ const Items = () => {
         })
     }, [sorting, brands, tags, pagination, itemType]);
 
-    // useEffect(() => {
-    //     console.log(basket);
-    // }, [basket]);
-
     const checkItemAdding = useCallback((item) => {
         let itemQueryUrl = base_url + `?name=${item.name}`;
         if(!basket.hasOwnProperty(item.name)) {
@@ -63,18 +60,23 @@ const Items = () => {
 
 
     return (
-        <div style={{ position: "absolute", top: 70, right: 500 }}>
+        <div style={{ position: "absolute", top: 70, left: 400 }}>
             <BasketApp />
             <ProductType />
-            {items.length > 0 ? <ul>
+            {items.length > 0 ? <ul className="product-container">
                 { items.map(item => (
-                    <li key={item.added}>
-                        <div>
-                            <p>{item.name}</p>
-                            <p>{item.price}</p>
-                            <button onClick={() => checkItemAdding(item)}>Add</button>
+                    <li key={item.added} className="product">
+                        <div className="product-image-container">
+                            <div className="product-image"></div>
                         </div>
-                        <hr />
+                        <div className="product-detail">
+                            <p>₺ {item.price}</p>
+                            <p className="product-name">{item.name}</p>
+                            <div className="add-button"
+                            onClick={() => checkItemAdding(item)}>
+                                Add
+                            </div>
+                        </div>
                     </li>
                 )) }
             </ul> : <NoResults />}

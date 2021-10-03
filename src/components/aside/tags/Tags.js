@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addTag, deleteTag, resetTag } from "../../../store/actions/TagsActions";
 import { base_url } from "../../../utils/base_url";
+import "../aside-common.css";
 
 const Tags = () => {
 
@@ -34,16 +35,21 @@ const Tags = () => {
 
     return (
         <>
-            <h3>Tags</h3>
-            <input type="text" placeholder="Search Tag" onChange={(e) => {
-                setSearchTags(e.target.value);
-            }} />
-            <ul ref={tagsList} style={{ height: 300, width: 400, overflowY: "scroll", borderWidth: 1, borderColor: "#000", borderStyle: "solid" }}>
+            <h4 className="filter-header">Tags</h4>
+            <ul ref={tagsList} className="filter-container">
                 <li>
+                    <input type="text" placeholder="Search Tag"
+                    className="search-box"
+                    onChange={(e) => {
+                        setSearchTags(e.target.value);
+                    }} />
+                </li>
+                <li className="checkbox-label-container">
                     <input type="checkbox" id="all-tag" name="tags" value="All"
+                    className="checkbox-style"
                     onChange={(e) => {
                         dispatch(resetTag());
-                        for(let i = 1; i < tagsList.current.children.length; i++) {
+                        for(let i = 2; i < tagsList.current.children.length; i++) {
                             tagsList.current.children[i].children[0].checked = false;
                         }
                     }}/>
@@ -53,8 +59,10 @@ const Tags = () => {
                 .filter(tag => tag.includes(searchTags))
                 .map(tag => (
                     <li
+                    className="checkbox-label-container"
                     key={tag}>
                         <input type="checkbox" id={tag} name={tag} value={tag}
+                        className="checkbox-style"
                         checked={tags.includes(tag)}
                         onChange={e => {
                             if(e.target.checked) {

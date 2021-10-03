@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addBrand, deleteBrand, resetBrand } from "../../../store/actions/BrandsActions";
+import "../aside-common.css";
 
 const Brands = () => {
 
@@ -26,27 +27,34 @@ const Brands = () => {
 
     return (
         <>
-            <h3>Brands</h3>
-            <input type="text" placeholder="Search Brand" onChange={(e) => {
-                setSearchBrands(e.target.value);
-            }} />
-            <ul ref={brandsList} style={{ height: 300, width: 400, overflowY: "scroll", borderWidth: 1, borderColor: "#000", borderStyle: "solid" }}>
+            <h4 className="filter-header">Brands</h4>
+            <ul ref={brandsList} className="filter-container">
                 <li>
+                    <input type="text" placeholder="Search Brand"
+                    className="search-box"
+                    onChange={(e) => {
+                        setSearchBrands(e.target.value);
+                    }} />
+                </li>
+                <li className="checkbox-label-container">
                     <input type="checkbox" id="all-brand" name="brands" value="All"
+                    className="checkbox-style"
                     onChange={(e) => {
                         dispatch(resetBrand());
-                        for(let i = 1; i < brandsList.current.children.length; i++) {
+                        for(let i = 2; i < brandsList.current.children.length; i++) {
                             brandsList.current.children[i].children[0].checked = false;
                         }
-                    }} />
+                    }}
+                    />
                     <label htmlFor="all-brand">All</label>
                 </li>
                 { companiesResponse
                 .filter(company => company.name.includes(searchBrands))
                 .map(company => (
-                    <li key={company.account}>
+                    <li key={company.account} className="checkbox-label-container">
                         <input type="checkbox" id={company.slug} name="brands" value={company.slug}
                         checked={brands.includes(company.slug)}
+                        className="checkbox-style"
                         onChange={e => {
                             if(e.target.checked) {
                                 dispatch(addBrand(e.target.value));

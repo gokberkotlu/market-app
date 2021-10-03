@@ -24,17 +24,33 @@ const BasketReducer = (state={}, action) => {
                     return state;
                 }
             }
+
         case "DELETE-ITEM":
-            if(state.hasOwnProperty(action.namePayload) && state[action.namePayload]["product-added"].includes(action.addedPayload)) {
-                let addedIndex = state[action.namePayload]["product-added"].indexOf(action.addedPayload);
-                state[action.namePayload]["product-added"].splice(addedIndex, 1);
-                state[action.namePayload]["numberOfProduct"] -= 1;
-                if(state[action.namePayload]["numberOfProduct"] === 0) {
-                    delete state[action.namePayload];
-                }
-                return {...state}
+            delete state[action.namePayload];
+            return {...state};
+
+        case "INCREASE-ITEM":
+            let itemType = action.namePayload;
+            let increaseItemGroup = state[itemType];
+            let availableItemsAddedInfo = [];
+            increaseItemGroup["availableItems"].forEach((availableItem) => {
+                availableItemsAddedInfo.push(availableItem.added);
+            });
+            var difference = availableItemsAddedInfo.filter(x => increaseItemGroup["product-added"].indexOf(x) === -1);
+            if(difference.length > 0) {
+                increaseItemGroup["product-added"].push(difference[0]);
+                increaseItemGroup["numberOfProduct"] += 1;
             }
-            return state;
+
+            return {...state};
+            
+        case "DECREASE-ITEM":
+            let decreaseItemGroup = state[action.namePayload];
+            if(decreaseItemGroup["product-added"].length > 1) {
+                decreaseItemGroup["product-added"].pop();
+                decreaseItemGroup["numberOfProduct"] -= 1;
+            }
+            return {...state};
         default:
             return state;
     }

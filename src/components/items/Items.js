@@ -68,9 +68,7 @@ const Items = () => {
                         <div>
                             <p>{item.name}</p>
                             <p>{item.price}</p>
-                            {/* <button onClick={() => dispatch(addItemToBasket(item.name, item.added))}>Add</button> */}
                             <button onClick={() => checkItemAdding(item)}>Add</button>
-                            <button onClick={() => dispatch(deleteItemFromBasket(item.name, item.added))}>Delete</button>
                         </div>
                         <hr />
                     </li>

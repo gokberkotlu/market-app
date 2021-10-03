@@ -7,10 +7,23 @@ export const addItemToBasket = (name, added, res=null) => {
     }
 }
 
-export const deleteItemFromBasket = (name, added) => {
+export const deleteItemFromBasket = (name) => {
     return {
         type: 'DELETE-ITEM',
-        namePayload: name,
-        addedPayload: added
+        namePayload: name
+    }
+}
+
+export const increaseBasketItemNumber = (name) => {
+    return {
+        type: 'INCREASE-ITEM',
+        namePayload: name
+    }
+}
+
+export const decreaseBasketItemNumber = (name) => {
+    return {
+        type: 'DECREASE-ITEM',
+        namePayload: name
     }
 }

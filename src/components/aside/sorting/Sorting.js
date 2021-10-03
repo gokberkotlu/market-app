@@ -1,9 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { priceAscending, priceDescending, addedAscending, addedDescending } from "../../../store/actions/SortingActions";
 
 const Sorting = () => {
 
-    const sorting = useSelector(state => state.sorting);
     const dispatch = useDispatch();
 
     return (

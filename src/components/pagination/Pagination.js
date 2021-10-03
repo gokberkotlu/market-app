@@ -10,7 +10,6 @@ const Pagination = () => {
 
     return (
         <div>
-            <p>PAGINATION</p>
             <button
             disabled={pagination <= 1}
             onClick={() => dispatch(previousPage())}>-</button>

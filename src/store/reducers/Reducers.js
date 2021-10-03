@@ -3,6 +3,8 @@ import BrandsReducer from "./BrandsReducer";
 import TagsReducer from "./TagsReducer";
 import PaginationReducer from "./PaginationReducer";
 import TotalPagesReducer from "./TotalPagesReducer";
+import ItemTypeReducer from "./ItemTypeReducer";
+import BasketReducer from "./BasketReducer";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
@@ -10,7 +12,9 @@ const allReducers = combineReducers({
     brands: BrandsReducer,
     tags: TagsReducer,
     pagination: PaginationReducer,
-    totalPages: TotalPagesReducer
+    totalPages: TotalPagesReducer,
+    itemType: ItemTypeReducer,
+    basket: BasketReducer
 });
 
 export default allReducers;

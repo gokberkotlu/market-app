@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addBrand, deleteBrand, resetBrand } from "../../../store/actions/BrandsActions";
-import { base_url } from "../../../utils/base_url";
 
 const Brands = () => {
 

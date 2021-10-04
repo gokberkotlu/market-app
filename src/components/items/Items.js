@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "../pagination/Pagination";
 import ProductType from "../product-type/ProductType";
 import NoResults from "../no-results/NoResults";
-import BasketApp from "../basket-app/BasketApp";
 import Footer from "../footer/Footer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +20,6 @@ const Items = () => {
     const brands = useSelector(state => state.brands);
     const tags = useSelector(state => state.tags);
     const pagination = useSelector(state => state.pagination);
-    const totalPages = useSelector(state => state.totalPages);
     const itemType = useSelector(state => state.itemType);
     const basket = useSelector(state => state.basket);
 

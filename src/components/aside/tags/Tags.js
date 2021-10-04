@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addTag, deleteTag, resetTag } from "../../../store/actions/TagsActions";
-import { base_url } from "../../../utils/base_url";
+import { items_base_url } from "../../../utils/items_base_url";
 import "../aside-common.css";
 
 const Tags = () => {
@@ -17,7 +17,7 @@ const Tags = () => {
     const tagsList = useRef(null);
 
     useEffect(() => {
-        axios.get(base_url)
+        axios.get(items_base_url)
         .then(res => {
             let tagsArr = [];
             if(res.status === 200) {

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTotalPages } from "../../store/actions/TotalPagesAction";
 import { addItemToBasket } from "../../store/actions/BasketActions";
 import { resetPage } from "../../store/actions/PaginationActions";
-import { base_url } from "../../utils/base_url";
+import { items_base_url } from "../../utils/items_base_url";
 import "./items.css";
 
 const Items = () => {
@@ -32,7 +32,7 @@ const Items = () => {
     }, [sorting, brands, tags, itemType])
 
     useEffect(() => {
-        let main_url = base_url + `?_page=${pagination}&_limit=16&`;
+        let main_url = items_base_url + `?_page=${pagination}&_limit=16&`;
         let brandQuery = "";
         let tagQuery = "";
         let itemTypeQuery = `&itemType=${itemType}`;
@@ -48,7 +48,7 @@ const Items = () => {
     }, [sorting, brands, tags, pagination, itemType]);
 
     const checkItemAdding = (item) => {
-        let itemQueryUrl = base_url + `?name=${item.name}`;
+        let itemQueryUrl = items_base_url + `?name=${item.name}`;
         if(!basket.hasOwnProperty(item.name)) {
             axios.get(itemQueryUrl)
             .then(res => {

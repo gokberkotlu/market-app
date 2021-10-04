@@ -2,11 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addBrand, deleteBrand, resetBrand } from "../../../store/actions/BrandsActions";
+import { companies_base_url } from "../../../utils/companies_base_url";
 import "../aside-common.css";
 
 const Brands = () => {
-
-    const companiesUrl = "http://localhost:8000/companies";
 
     const [companiesResponse, setCompaniesResponse] = useState([]);
     const [searchBrands, setSearchBrands] = useState("");
@@ -17,7 +16,7 @@ const Brands = () => {
     const brandsList = useRef(null);
 
     useEffect(() => {
-        axios.get(companiesUrl)
+        axios.get(companies_base_url)
         .then(res => {
             if(res.status === 200) {
                 setCompaniesResponse(res.data);

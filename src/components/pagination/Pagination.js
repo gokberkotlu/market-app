@@ -20,7 +20,7 @@ const Pagination = () => {
                 <img src={arrowLeft} height={10} style={{marginRight: 12}} />
                 <span>Prev</span>
             </button>
-            <span>{ pagination } / {totalPages}</span>
+            <span style={{fontWeight: 600}}>{ pagination } / {totalPages}</span>
             <button className="pagination-btn"
             disabled={!(pagination < totalPages)}
             onClick={() => {

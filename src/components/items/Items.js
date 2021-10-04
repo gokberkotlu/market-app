@@ -3,6 +3,7 @@ import Pagination from "../pagination/Pagination";
 import ProductType from "../product-type/ProductType";
 import NoResults from "../no-results/NoResults";
 import BasketApp from "../basket-app/BasketApp";
+import Footer from "../footer/Footer";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPages } from "../../store/actions/TotalPagesAction";
@@ -81,6 +82,7 @@ const Items = () => {
                 )) }
             </ul> : <NoResults />}
             <Pagination />
+            <Footer />
         </div>
     );
 }

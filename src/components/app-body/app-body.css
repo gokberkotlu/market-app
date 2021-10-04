@@ -1,0 +1,18 @@
+.main-content {
+    display: flex;
+    gap: 16px;
+    margin-left: 104px;
+    margin-top: 38.36px;
+}
+
+@media screen and (max-width: 1000px ) {
+    .main-content {
+        margin-left: 85px;
+    }
+}
+
+@media screen and (max-width: 700px ) {
+    .main-content {
+        margin-left: 60px;
+    }
+}

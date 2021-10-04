@@ -1,0 +1,9 @@
+.footer-container {
+    text-align: center;
+    color: var(--primary-color);
+    margin: 136px 0 40px 0;
+}
+
+.footer-mid-point {
+    margin: 0 16px;
+}

@@ -1,3 +1,4 @@
+import BasketApp from "../basket-app/BasketApp";
 import "./navbar.css";
 import marketImage from "../../assets/images/market.svg";
 import lockImage from "../../assets/images/lock.svg";
@@ -17,6 +18,7 @@ const Navbar = () => {
                     <span>₺ { totalPrice.toFixed(2) }</span>
                 </div>
             </div>
+            <BasketApp />
         </nav>
     );
 }

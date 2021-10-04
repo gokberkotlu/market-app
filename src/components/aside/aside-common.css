@@ -2,7 +2,6 @@
     width: 296px;
     height: 184px;
     overflow-y: scroll;
-    border: 1px solid #000;
     background-color: #fff;
     box-sizing: border-box;
     display: flex;
@@ -38,4 +37,11 @@
     font-size: 13px;
     line-height: 17.7px;
     margin: 0;
+    margin-bottom: 12px;
+    margin-top: 24px;
+    color: #697488;
+}
+
+.filter-header:first-child {
+    margin-top: 0;
 }

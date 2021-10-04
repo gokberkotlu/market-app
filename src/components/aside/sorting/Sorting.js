@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { priceAscending, priceDescending, addedAscending, addedDescending } from "../../../store/actions/SortingActions";
 import "../aside-common.css";
+import "./sorting.css";
 
 const Sorting = () => {
 
@@ -9,7 +10,7 @@ const Sorting = () => {
     return (
         <>
             <h4 className="filter-header">Sorting</h4>
-            <ul className="filter-container">
+            <ul className="filter-container sorting-container">
                 <li className="checkbox-label-container">
                     <input type="radio" id="low-to-high" value="low-to-high" name="sorting"
                     onChange={() => dispatch(priceAscending())}

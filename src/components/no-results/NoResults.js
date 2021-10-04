@@ -1,6 +1,8 @@
+import "./no-results.css"
+
 const NoResults = () => {
     return (
-        <div>
+        <div className="no-results-container">
             <p>No Results...</p>
         </div>
     );

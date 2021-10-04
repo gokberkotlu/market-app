@@ -48,9 +48,9 @@ const BasketReducer = (state={}, action) => {
             increaseItemGroup["availableItems"].forEach((availableItem) => {
                 availableItemsAddedInfo.push(availableItem.added);
             });
-            var difference = availableItemsAddedInfo.filter(x => increaseItemGroup["product-added"].indexOf(x) === -1);
-            if(difference.length > 0) {
-                increaseItemGroup["product-added"].push(difference[0]);
+            var _difference = availableItemsAddedInfo.filter(x => increaseItemGroup["product-added"].indexOf(x) === -1);
+            if(_difference.length > 0) {
+                increaseItemGroup["product-added"].push(_difference[0]);
                 increaseItemGroup["numberOfProduct"] += 1;
             }
 

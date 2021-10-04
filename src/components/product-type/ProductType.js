@@ -11,7 +11,6 @@ const ProductType = () => {
 
     return (
         <div>
-            <h2>PRODUCTS</h2>
             <div className="switch-filtercontainer">
                 <div className={typeActive ? "type-active mug-shirt" : "mug-shirt"}
                 onClick={() => {

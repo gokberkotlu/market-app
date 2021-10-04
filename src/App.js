@@ -1,13 +1,13 @@
 import Navbar from "./components/navbar/Navbar";
-import Aside from "./components/aside/Aside";
-import Items from "./components/items/Items";
+import AppBody from "./components/app-body/AppBody";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Aside />
-      <Items />
+      <AppBody />
+      <Footer />
     </div>
   );
 }

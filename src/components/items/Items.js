@@ -24,6 +24,10 @@ const Items = () => {
     const itemType = useSelector(state => state.itemType);
     const basket = useSelector(state => state.basket);
 
+    useEffect(() => {
+        console.log(basket);
+    }, [basket])
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -46,7 +50,7 @@ const Items = () => {
         })
     }, [sorting, brands, tags, pagination, itemType]);
 
-    const checkItemAdding = useCallback((item) => {
+    const checkItemAdding = (item) => {
         let itemQueryUrl = base_url + `?name=${item.name}`;
         if(!basket.hasOwnProperty(item.name)) {
             axios.get(itemQueryUrl)
@@ -56,12 +60,12 @@ const Items = () => {
         } else {
             dispatch(addItemToBasket(item.name, item.added));
         }
-    }, [])
+    }
 
 
     return (
-        <div style={{ position: "absolute", top: 70, left: 400 }}>
-            <BasketApp />
+        <div>
+            <h2 className="products-header">PRODUCTS</h2>
             <ProductType />
             {items.length > 0 ? <ul className="product-container">
                 { items.map(item => (
@@ -70,7 +74,7 @@ const Items = () => {
                             <div className="product-image"></div>
                         </div>
                         <div className="product-detail">
-                            <p>₺ {item.price}</p>
+                            <p className="product-price">₺ {item.price}</p>
                             <p className="product-name">{item.name}</p>
                             <div className="add-button"
                             onClick={() => checkItemAdding(item)}>
@@ -80,7 +84,6 @@ const Items = () => {
                     </li>
                 )) }
             </ul> : <NoResults />}
-            {totalPages > 0 && <p>Pages: {totalPages}</p>}
             <Pagination />
         </div>
     );

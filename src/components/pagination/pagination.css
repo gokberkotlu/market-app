@@ -1,0 +1,21 @@
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding: 0 20px;
+}
+
+@media screen and (max-width: 700px ) {
+    .pagination-container {
+        padding: 0;
+    }
+}
+
+.pagination-btn {
+    display: inline-block;
+    width: 100px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--primary-color);
+}

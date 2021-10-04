@@ -4,7 +4,7 @@ This application build in React.
 In application, items are fetched from json-server. Also items can be listed by desired parameters like brand, tag, date, price, type.
 Redux is used for state management.
 
-![React-Redux e-Commerce App](https://raw.githubusercontent.com/gokberkotlu/market-app/main/public/screenshots/landing-page-screen.png "React-Redux e-Commerce App")
+![](public/screenshots/landing-page-screen.png)
 
 
 # Getting Started with Create React App

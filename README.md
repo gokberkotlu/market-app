@@ -3,6 +3,8 @@
 Application build in React and items are fetched from json-server. Also items can be listed by desired parameters like brand, tag, date, price, type.
 Redux is used for state management.
 
+# [Live Demo](https://market-app-study.herokuapp.com/)
+
 ![](public/screenshots/landing-page-screen.png)
 
 

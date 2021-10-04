@@ -45,7 +45,10 @@ const BasketApp = () => {
                     totalPrice += availableItems[i].price;
                 }
             }
-            dispatch(setTotalPrice(totalPrice))
+            dispatch(setTotalPrice(totalPrice));
+        }
+        if(basketKeys.length === 0) {
+            dispatch(setTotalPrice(0));
         }
     }, [basket]);
 

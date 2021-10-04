@@ -24,10 +24,6 @@ const Items = () => {
     const itemType = useSelector(state => state.itemType);
     const basket = useSelector(state => state.basket);
 
-    useEffect(() => {
-        console.log(basket);
-    }, [basket])
-
     const dispatch = useDispatch();
 
     useEffect(() => {

@@ -1,7 +1,6 @@
 # **E-COMMERCE MARKET APP**
 
-This application build in React.
-In application, items are fetched from json-server. Also items can be listed by desired parameters like brand, tag, date, price, type.
+Application build in React and items are fetched from json-server. Also items can be listed by desired parameters like brand, tag, date, price, type.
 Redux is used for state management.
 
 ![](public/screenshots/landing-page-screen.png)
